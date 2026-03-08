@@ -3,6 +3,7 @@
 \m5
    use(m5-1.0)
 
+   // load your repo library
    m4_include_lib(['https://raw.githubusercontent.com/chillakalyan/tlv-virtual-fpga-board/main/tlv_lib/fpga_includes.tlv'])
 
 \SV
@@ -11,12 +12,16 @@
 
 |fpga
 
-   // Counter
+   // connect reset
    @0
-      $counter[31:0] = *reset ? 0 : >>1$counter + 1;
+      $reset = *reset;
+
+   // counter
+   @1
+      $counter[31:0] = $reset ? 0 : >>1$counter + 1;
 
    // LED output
-   @1
+   @2
       $led[7:0] = >>1$counter[27:20];
 
 \SV
