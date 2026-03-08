@@ -10,11 +10,11 @@
 |fpga
 
    @0
-      $counter[31:0] = *reset ? 0 : >>1$counter + 1;
+      $counter[31:0] = *reset ? 32'b0 : >>1$counter + 1;
 
    @1
       $led[7:0] = >>1$counter[27:20];
 
 \SV
-   assign led = $led;
+   assign led[7:0] = $led[7:0];
 endmodule
