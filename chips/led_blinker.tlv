@@ -1,6 +1,5 @@
 \m5_TLV_version 1d: tl-x.org
 \m5
-   use(m5-1.0)
 
 \SV
    m4_include_lib(['https://raw.githubusercontent.com/chillakalyan/tlv-virtual-fpga-board/main/tlv_lib/fpga_includes.tlv'])
@@ -17,4 +16,5 @@
       $led[7:0] = >>1$counter[27:20];
 
 \SV
+   assign led = $led;
 endmodule
