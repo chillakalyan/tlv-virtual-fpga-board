@@ -1,34 +1,30 @@
 \m5_TLV_version 1d: tl-x.org
+
 \SV
 \m5
    use(m5-1.0)
 
-   // Include IGLOO board visualization
-   m4_include_lib(['https://raw.githubusercontent.com/chillakalyan/tlv-virtual-fpga-board/main/board/igloo_board.tlv'])
-
-   // Macro constants for visualization
+   // Visualization constants
    universal_var(RED_LED_COLOR, "#ff4040")
    universal_var(LED_OFF_COLOR, "#404040")
 
-   // Simple FPGA module wrapper
-   macro(fpga_top, ['
-
-      module top(
-         input wire clk,
-         input wire reset,
-         input wire [31:0] cyc_cnt,
-         output wire passed,
-         output wire failed
-      );
-
-      logic [7:0] led;
-      logic [7:0] slideswitch;
-      logic [3:0] push;
-
-   '])
 \TLV
 
-// Simple heartbeat signal
+
+// -------------------------------------------------
+// FPGA INTERFACE
+// -------------------------------------------------
+
+|fpga
+   $led[7:0]
+   $slideswitch[7:0]
+   $push[3:0]
+
+
+// -------------------------------------------------
+// HEARTBEAT GENERATOR
+// -------------------------------------------------
+
 fpga_heartbeat($_pulse, #_delay)
 
    $count[31:0] =
@@ -36,10 +32,13 @@ fpga_heartbeat($_pulse, #_delay)
       >>1$count + 1;
 
    $_pulse =
-      ($count == #_delay) ? 1 : 0;
+      ($count == #_delay);
 
 
-// Default LED driver for visualization
+// -------------------------------------------------
+// DEFAULT LED LOGIC (fallback demo)
+// -------------------------------------------------
+
 /default_led_logic
 
    @0
@@ -51,9 +50,22 @@ fpga_heartbeat($_pulse, #_delay)
       $led[7:0] =
          >>1$counter[27:20];
 
-\SV
 
-   assign passed = cyc_cnt > 200;
-   assign failed = 1'b0;
+
+\SV
+// -------------------------------------------------
+// SYSTEMVERILOG WRAPPER
+// -------------------------------------------------
+
+module top(
+   input wire clk,
+   input wire reset,
+   input wire [31:0] cyc_cnt,
+   output wire passed,
+   output wire failed
+);
+
+assign passed = cyc_cnt > 200;
+assign failed = 1'b0;
 
 endmodule
