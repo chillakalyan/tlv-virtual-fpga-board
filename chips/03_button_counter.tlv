@@ -11,19 +11,20 @@
 
 |fpga
 
-   // detect button press
    @0
       $btn = $push[0];
 
-   // counter
    @1
-      $count[7:0] = *reset ? 0 :
-                    $btn ? >>1$count + 1 :
-                           >>1$count;
+      $btn_edge = $btn & ~>>1$btn;
 
-   // LED display
    @2
-      $led[7:0] = >>1$count;
+      $count[7:0] =
+         *reset ? 0 :
+         $btn_edge ? >>1$count + 1 :
+                     >>1$count;
+
+   @3
+      $led[7:0] = $count;
 
 \SV
 endmodule
