@@ -4,10 +4,10 @@
 \m5
    use(m5-1.0)
 
-   // include helper macros
+   // include FPGA helper library
    m4_include_lib(['https://raw.githubusercontent.com/chillakalyan/tlv-virtual-fpga-board/main/tlv_lib/fpga_includes.tlv'])
 
-   // include board visualization
+   // include IGLOO board
    m4_include_lib(['https://raw.githubusercontent.com/chillakalyan/tlv-virtual-fpga-board/main/board/igloo_board.tlv'])
 
 \SV
@@ -17,12 +17,17 @@
 
 |fpga
 
+   // default signals
    @0
-      $led[7:0] = >>1$led + 1;
+      $slideswitch[7:0] = 8'b0;
+      $push[3:0] = 4'b0;
 
-      $slideswitch[7:0] = 8'hAA;
+   // simple demo LED counter
+   @1
+      $counter[31:0] = *reset ? 0 : >>1$counter + 1;
 
-      $push[3:0] = 4'hF;
+   @2
+      $led[7:0] = >>1$counter[27:20];
 
 \SV
 endmodule
