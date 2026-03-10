@@ -15,10 +15,10 @@
       $counter[31:0] = *reset ? 0 : >>1$counter + 1;
 
    @1
-      $position[2:0] = >>1$counter[24:22];
+      $position[2:0] = $counter[24:22];
 
    @2
-      $led[7:0] = 8'b00000001 << >>1$position;
+      $led[7:0] = 8'b00000001 << $position;
 
 \SV
 endmodule
