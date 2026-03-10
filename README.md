@@ -24,31 +24,26 @@ tlv-virtual-fpga-board
 │
 ├── board
 │   └── igloo_board.tlv
-│       Board visualization layer using viz_js
-│
+│       
 ├── chips
 │   ├── 01_led_blinker.tlv
 │   ├── 02_led_animation.tlv
 │   ├── 03_button_counter.tlv
-│   └── 04_switch_led_controller.tlv
-│       Example FPGA designs interacting with board IO
+│   └── 04_switch_led_controller.tlv   
 │
 ├── docs
 │   ├── board_layout.md
-│   └── chip_architecture.md
-│       Documentation explaining the architecture
+│   └── chip_architecture.md       
 │
 ├── images
 │   ├── igloo_board.png
 │   └── igoo_board.png
-│       Board image used in visualization
-│
+│       
 ├── tlv_lib
 │   └── fpga_interface.tlv
-│       Defines shared FPGA signals
-│
+│       
 └── top.tlv
-    Entry point for Makerchip simulation
+    
 ```
 
 ---
