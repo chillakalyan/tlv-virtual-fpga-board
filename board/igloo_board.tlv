@@ -2,7 +2,9 @@
 
 /board
 
-   // Board Image
+   // -----------------------------
+   // BOARD IMAGE
+   // -----------------------------
 
    \viz_js
       init() {
@@ -24,7 +26,10 @@
 
       }
 
-   // LED Visualization
+
+   // -----------------------------
+   // LED VISUALIZATION
+   // -----------------------------
 
    /leds[7:0]
 
@@ -44,7 +49,7 @@
 
          renderFill() {
 
-            return '$viz_led'.asBool() ? "#ff4040" : "transparent"
+            return '$viz_led'.asBool() ? "#ff4040" : "#202020"
 
          }
 
@@ -54,7 +59,10 @@
             scale: 3
          }
 
-   // Switch Visualization
+
+   // -----------------------------
+   // SWITCH VISUALIZATION
+   // -----------------------------
 
    /switch[7:0]
 
@@ -108,7 +116,10 @@
             scale:3
          }
 
-   // Push Button Visualization
+
+   // -----------------------------
+   // PUSH BUTTON VISUALIZATION
+   // -----------------------------
 
    /push
 
@@ -140,44 +151,4 @@
 
             layout:{
                left:function(i){ return i*25 }
-            }
-
-
-   // Seven Segment Display
-
-   /seven_seg
-
-      \viz_js
-         box:{
-            width:120,
-            height:60,
-            fill:"#222",
-            strokeWidth:0
-         }
-
-         where:{
-            left:200,
-            top:420
-         }
-
-      /segments[7:0]
-
-         $viz_seg = /fpga$sseg_segment_n[#segments]
-
-         \viz_js
-            box:{
-               width:12,
-               height:4,
-               fill:"red"
-            }
-
-            renderFill(){
-
-               return '$viz_seg'.asBool() ? "#330000" : "red"
-
-            }
-
-            layout:{
-               left:function(i){ return i*14 },
-               top:20
             }
