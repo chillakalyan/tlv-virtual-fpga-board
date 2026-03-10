@@ -145,12 +145,12 @@ The expected behavior is that FPGA signals drive the board visualization element
 This repository represents an **experimental implementation** of a new board backend for the Virtual-FPGA-Lab environment.
 
 Current progress:
-
+```
 ✔ Custom board visualization implemented
 ✔ FPGA interface defined
 ✔ Example FPGA designs created
 ✔ Repository structure aligned with Virtual-FPGA-Lab
-
+```
 Open investigation:
 
 * Ensuring full integration of the custom board with Makerchip visualization
@@ -166,12 +166,4 @@ The IGLOO Nano board was chosen as a test platform to experiment with board visu
 
 ---
 
-# Author
 
-Kalyan
-
----
-
-# License
-
-MIT License
